@@ -1,0 +1,162 @@
+
+#!/usr/bin/env python3
+
+import sys
+
+import subprocess as sp
+import os
+import re
+from configparser import ConfigParser
+import math
+import time
+import argparse
+
+DBUS = 'qdbus org.kde.yakuake '
+
+
+def get_stdout(cmd, **opts):
+    opts.update({'stdout': sp.PIPE})
+    if 'env' in opts:
+        env, opts['env'] = opts['env'], os.environ.copy()
+        opts['env'].update(env)
+    quoted = re.findall(r'".+"', cmd)
+    for q in quoted:
+        cmd = cmd.replace(q, '%s')
+    cmd = cmd.split()
+    for i, part in enumerate(cmd):
+        if part == '%s':
+            cmd[i] = quoted.pop(0)[1:-1]
+    proc = sp.Popen(cmd, **opts)
+    return proc.communicate()[0].strip().decode("utf-8")
+
+
+def get_yakuake(cmd):
+    return get_stdout(DBUS + cmd)
+
+
+def get_sessions():
+    active_session_id = int(get_yakuake('/yakuake/sessions activeSessionId'))
+    tabs = []
+    while True:
+        session_id = int(get_yakuake('/yakuake/tabs sessionAtTab %d' % len(tabs)))
+        if session_id < 0:
+            break  # end reached
+        # NOTE: one session can have multiple terminal sessions (split screen),
+        # ignoring all but first one
+        terminal_id = int(get_yakuake('/yakuake/sessions terminalIdsForSessionId %d' % session_id)
+                          .split(',')[0])
+        terminal_session = '/Sessions/%d' % (terminal_id + 1)
+        pid = get_yakuake(terminal_session + ' processId')
+        fgpid = get_yakuake(terminal_session + ' foregroundProcessId')
+        tabs.append({
+            'title': get_yakuake('/yakuake/tabs tabTitle %d' % session_id),
+            'sessionid': session_id,
+            'active': session_id == active_session_id,
+            'cwd': get_stdout('pwdx ' + pid).partition(' ')[2],
+            'cmd': '' if fgpid == pid else
+            get_stdout('ps ' + fgpid, env={'PS_FORMAT': 'command'}).split('\n')[-1],
+        })
+    return tabs
+
+
+def write_sessions(tabs, outfile_str=None, with_cmd=True):
+    cp = ConfigParser()
+    tabpad = int(math.log10(len(tabs))) + 1
+    for i, tab in enumerate(tabs):
+        section = ('Tab %%0%dd' % tabpad) % (i + 1)
+        cp.add_section(section)
+        cp.set(section, 'title', tab['title'])
+        cp.set(section, 'active', '1' if tab['active'] else '0')
+        cp.set(section, 'cwd', tab['cwd'])
+        if with_cmd:
+            cp.set(section, 'cmd', tab['cmd'])
+
+    fp = open(outfile_str, 'w') if outfile_str else sys.stdout
+    cp.write(fp)
+    fp.close()
+
+
+def clear_sessions():
+    for sid in get_yakuake('/yakuake/sessions sessionIdList').split(','):
+        get_yakuake('/yakuake/sessions removeSession %s' % sid)
+    time.sleep(2)
+    return get_yakuake('/yakuake/sessions sessionIdList').split(',')[0]
+
+
+def load_sessions(filenames=None):
+    cp = ConfigParser()
+    if filenames:
+        cp.read(filenames)
+    else:
+        cp.read_file(sys.stdin)
+    sections = cp.sections()
+    if not sections:
+        sys.stderr.write("No tab info found, aborting\n")
+        sys.exit(1)
+
+    # Clear existing sessions
+    last_sid = clear_sessions()
+
+    active = 0
+    # Repopulate the tabs
+    for i, section in enumerate(sections):
+        sessid = int(get_yakuake('/yakuake/sessions addSession'))
+        opts = dict(cp.items(section))
+
+        get_yakuake('/yakuake/sessions raiseSession %d' % sessid)
+        get_yakuake('/yakuake/tabs setTabTitle %d "%s"' % (sessid, opts['title']))
+        if 'cwd' in opts and opts['cwd']:
+            get_yakuake('/yakuake/sessions runCommand "cd \"%s\""' % opts['cwd'])
+        if 'cmd' in opts and opts['cmd']:
+            get_yakuake('/yakuake/sessions runCommand "%s"' % opts['cmd'])
+        if 'active' in opts and opts['active'].lower() in ['y', 'yes', 'true', '1']:
+            active = sessid
+    if active:
+        get_yakuake('/yakuake/sessions raiseSession %d' % active)
+
+    # Remove the session that remained after cleaning
+    get_yakuake('/yakuake/sessions removeSession %s' % last_sid)
+
+
+def arguments():
+    ap = argparse.ArgumentParser(
+        description="Save and load yakuake sessions.  Settings are exported in INI format. "
+                    " Default action is to print the current setup to stdout in INI format.")
+    ap.add_argument('-i', '--in-files', dest='infiles',
+                    help='File(s) to read from, or "-" for stdin', nargs='+')
+    ap.add_argument('-o', '--out-file', dest='outfile', help='File to write to, or "-" for stdout')
+    ap.add_argument('--force-overwrite', dest='force_overwrite',
+                    help='Do not prompt for confirmation if out-file exists', action="store_true",
+                    default=False)
+    ap.add_argument('--cmd', dest='with_cmd',
+                    help='Include currently running command in session file', action="store_true",
+                    default=False)
+    return ap.parse_args()
+
+
+def main():
+    args = arguments()
+
+    if not get_yakuake(""):
+        sys.stderr.write("WARNING: Could not connect to yakuake via qdbus. Is Yakuake running?\n")
+        return
+
+    if args.outfile is not None or (args.outfile is None and args.infiles is None):
+        outfile = args.outfile if args.outfile != '-' else None
+        if outfile is not None and os.path.exists(outfile):
+            if not args.force_overwrite and not \
+                    input('Specified file exists, overwrite? [y/N] ').lower().startswith('y'):
+                return
+        write_sessions(get_sessions(), outfile, with_cmd=args.with_cmd)
+    elif args.infiles:
+        if args.infiles == ['-']:
+            load_sessions()
+        else:
+            for fn in args.infiles:
+                if not os.path.exists(fn):
+                    sys.stderr.write("WARNING: Input file (%s) does not exist.\n" % fn)
+            load_sessions(args.infiles)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

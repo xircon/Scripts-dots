@@ -1,0 +1,9 @@
+ #!/bin/bash 
+ COUNTER=200
+ until [  $COUNTER -lt 1 ]; do
+       sudo ps_mem | grep -i xorg
+       #sleep 10
+       echo $COUNTER
+       let COUNTER-=1
+ done
+         

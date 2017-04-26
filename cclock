@@ -1,0 +1,4 @@
+#!/bin/bash
+sleep 10
+cairo-clock --xposition 1350 --yposition 720 --width 127 --height 127 &
+

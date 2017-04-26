@@ -1,0 +1,5 @@
+#!/bin/bash
+string=`uname -r`
+suffix="-MANJARO"
+foo=${string%$suffix}
+echo "${foo}"

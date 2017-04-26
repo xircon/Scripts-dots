@@ -1,0 +1,5 @@
+ #!/bin/sh
+sleep 20 &
+autokey-gtk &
+
+

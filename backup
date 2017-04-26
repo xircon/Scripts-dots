@@ -1,0 +1,5 @@
+#!/bin/bash
+echo `date` > /home/steve/Dropbox/scripts/lastback
+rsync -r -t -v --progress -s /home/steve/scripts /home/xircon/Dropbox/scripts
+rsync -r -t -v --progress -s /home/steve/.config/autokey /home/steve/Dropbox/scripts
+

@@ -1,0 +1,7 @@
+#!/bin/sh 
+set -x
+FPATH="/home/steve"
+while read line; do 
+    `"rm -r $FPATH/other/folder/$line 2> /dev/null"`
+done < test.txt
+set +x

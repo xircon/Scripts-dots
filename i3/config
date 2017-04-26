@@ -3,6 +3,7 @@
 # Original file: config.conf
 ##########
 # i3 config file (v4)
+#Testtttttt
 exec compton -CGb
 set $mod Mod4
 set $mod1 Mod1
@@ -184,6 +185,7 @@ for_window [class="FeatherPad"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
+for_window [class="GitKraken"] floating enable border pixel 1
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Kodi"] floating enable border pixel 0
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable

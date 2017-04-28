@@ -81,8 +81,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 workspace_auto_back_and_forth yes
 bindsym $mod+b workspace back_and_forth
-#bindsym $mod1+Tab workspace next
-bindsym $mod1+Tab exec /home/steve/.i3/i3ipc/i3-workspace.py
+bindsym $mod1+Tab workspace next
+#bindsym $mod1+Tab exec /home/steve/.i3/i3ipc/i3-workspace.py
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
@@ -180,7 +180,7 @@ for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="copyq"] floating enable
 for_window [class="Deadbeef"] floating enable
-for_window [class="Deluge"] fullscreen enable
+for_window [class="Deluge"] floating enable
 for_window [class="FeatherPad"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1

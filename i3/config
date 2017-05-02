@@ -179,6 +179,7 @@ for_window [title="angrysearch.py"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="copyq"] floating enable
+for_window [class="Corebird"] floating enable border pixel 1
 for_window [class="Deadbeef"] floating enable
 for_window [class="Deluge"] floating enable
 for_window [class="FeatherPad"] floating enable

@@ -404,6 +404,7 @@ exec --no-startup-id nm-applet
 #Connman network client:
 #exec --no-startup-id cmst -m
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id indicator-kdeconnect
 exec --no-startup-id pamac-tray
 exec --no-startup-id copyq
 exec --no-startup-id numlockx on

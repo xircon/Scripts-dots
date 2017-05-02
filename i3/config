@@ -74,7 +74,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+odiaeresis move right
+bindsym $mod+Shift+semicolon move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -92,7 +92,7 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+space floating toggle
-bindsym $mod+semicolon exec notify-send 'test 123'
+#bindsym $mod+semicolon exec notify-send 'test 123'
 #bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+a focus parent
@@ -207,6 +207,7 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="skypeforlinux"] floating enable border normal
 for_window [class="Simplenote"] floating enable border normal
+for_window [class="Spotify"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Tk"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
@@ -263,8 +264,6 @@ mode "resize" {
 bindsym $mod+9 exec --no-startup-id blurlock
 ###########################
 ###########################
-#exec compton -b
-#exec variety
 exec  --no-startup-id "sh -c 'sleep 5; variety'"
 #exec hsetroot -solid "#0000ff"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -273,6 +272,7 @@ exec --no-startup-id nm-applet
 #Connman network client:
 #exec --no-startup-id cmst -m
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id indicator-kdeconnect
 exec --no-startup-id pamac-tray
 exec --no-startup-id copyq
 exec --no-startup-id numlockx on

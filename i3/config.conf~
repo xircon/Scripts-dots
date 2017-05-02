@@ -393,9 +393,6 @@ bindsym $mod+9 exec --no-startup-id blurlock
 ###########################
 # Autostart applications ##
 ###########################
-#exec compton -b
-#exec variety
-
 exec  --no-startup-id "sh -c 'sleep 5; variety'"
 #exec hsetroot -solid "#0000ff"
 

@@ -274,6 +274,7 @@ assign [class="skypeforlinux"] $ws8
 assign [class="Deluge"] $ws9
 assign [class="Simplenote"] $ws10
 
+
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [title="angrysearch.py"] floating enable border pixel 1

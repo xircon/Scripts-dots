@@ -347,6 +347,7 @@ exec autokey-gtk
 exec dropbox
 exec ~/.i3/my-xcape.sh
 exec ulauncher --hide-window
+exec cerebro
 bindsym $mod1+Ctrl+m exec /usr/bin/mute; exec "notify-send Mute"
 assign [class="V2"] $ws4
 exec exec ~/scripts/v2

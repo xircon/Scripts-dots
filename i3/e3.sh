@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd ~/.i3 
+rm -f *~
 joe ~/.i3/config.conf 
 i3bang config.conf 
 cp config.conf backup/config.backup.$(date +%F_%R_%S)

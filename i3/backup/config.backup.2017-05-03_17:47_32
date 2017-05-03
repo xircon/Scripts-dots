@@ -530,4 +530,3 @@ exec vivaldi-snapshot
 exec --no-startup-id devilspie -a
 exec --no-startup-id simplenote
 exec /opt/extras.ubuntu.com/calendar-indicator/bin/calendar-indicator
-

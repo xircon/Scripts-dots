@@ -1,0 +1,6 @@
+from PySideKick import Console
+#from maxhelpers import MaxPlusConsole
+
+self.debug_window.layout().addWidget(QPythonConsole())
+
+show()

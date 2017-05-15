@@ -1,0 +1,6 @@
+from PySideKick import Console
+#from maxhelpers import MaxPlusConsole
+
+main=QApplication()
+Console.QPythonConsole()
+main.show()

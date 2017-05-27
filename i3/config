@@ -63,6 +63,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod1+v exec variety -n
 bindsym $mod1+ctrl+v exec /home/steve/scripts/v2
 bindsym Ctrl+Escape exec rofi -show window -fg "#f1f1f1" -bg "#333333" -hlfg "#ffffff" -hlbg "#336699" -o 85
+bindsym $mod1+m exec google-chrome-stable
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up

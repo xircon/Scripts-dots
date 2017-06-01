@@ -39,4 +39,4 @@ xcape -t 200 -e 'Shift_R=Control_L|Alt_L|m'
 #############
 #Disable caps lock key
 xmodmap -e 'clear Lock'
-xcape -t 100 -e '#66=Alt_L|m'
+xcape -e '#66=Alt_L|m'

@@ -1,0 +1,1 @@
+/home/steve/.i3/

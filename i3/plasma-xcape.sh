@@ -42,7 +42,7 @@ xcape -e 'Alt_R=Super_L|a'
 ###################
 # Shift Keys:     #
 ###################
-xcape -e 'Shift_L=Super_L|d'
+xcape -e 'Shift_L=Control_L|Alt_L|d'
 xcape -t 200 -e 'Shift_R=Control_L|Shift_L|m'
 
 #############

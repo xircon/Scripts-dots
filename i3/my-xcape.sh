@@ -11,6 +11,8 @@ killall xcape
 ################
 # Super Keys:  #
 ################
+xmodmap -e "keycode 135 = Super_R"
+xmodmap -e "keycode 134 = Super_R"
 xcape -e 'Super_L=Alt_L|Tab'
 xcape -e 'Super_R=Super_L|F2'
 

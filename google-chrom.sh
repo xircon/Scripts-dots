@@ -1,5 +1,5 @@
 #!/bin/bash
-pkill compton
+#pkill compton
 ######################################################################################################
 # This script will toggle minimize/activate first window with specified class
 # If window not found program will be launched

@@ -1,5 +1,5 @@
 #!/bin/bash
-pkill compton
+#pkill compton
 ######################################################################################################
 # This script will toggle minimize/activate first window with specified class
 # If window not found program will be launched
@@ -21,6 +21,8 @@ NEEDED_WINDOW_WINDOW_ID_HEX=`wmctrl -x -l | grep ${NEEDED_WINDOW_CLASS} | awk '{
 NEEDED_WINDOW_WINDOW_ID_DEC=$((${NEEDED_WINDOW_WINDOW_ID_HEX}))
 if [ -z "${NEEDED_WINDOW_WINDOW_ID_HEX}" ]; then
     ${LAUNCH_PROGRAM}
+    sleep 8s
+    wmctrl -xa crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot -b add,maximized_horz,maximized_vert
 else
     echo "Found window ID:${NEEDED_WINDOW_WINDOW_ID_DEC}(0x${NEEDED_WINDOW_WINDOW_ID_HEX})"
     ACIVE_WINDOW_DEC=`xdotool getactivewindow`
@@ -28,5 +30,7 @@ else
         xdotool windowminimize ${NEEDED_WINDOW_WINDOW_ID_DEC}
     else
         xdotool windowactivate ${NEEDED_WINDOW_WINDOW_ID_DEC}
+        wmctrl -xa crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot -b add,maximized_horz,maximized_vert
+
     fi
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-pkill compton
+#pkill compton
 ######################################################################################################
 # This script will toggle minimize/activate first window with specified class
 # If window not found program will be launched
@@ -14,13 +14,18 @@ pkill compton
 ######################################################################################################
 #crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot
 NEEDED_WINDOW_CLASS="terminator.Terminator"
+#NEEDED_WINDOW_CLASS="sakura.Sakura"
 #LAUNCH_PROGRAM="/usr/bin/firefox -height 900 -width 1600"
-LAUNCH_PROGRAM="kstart --desktop 4 /usr/bin/terminator"
+LAUNCH_PROGRAM="kstart --desktop 4 /usr/bin/terminator -f"
+#LAUNCH_PROGRAM="/usr/bin/sakura -m"
+
 ######################################################################################################
 NEEDED_WINDOW_WINDOW_ID_HEX=`wmctrl -x -l | grep ${NEEDED_WINDOW_CLASS} | awk '{print $1}' | head -n 1`
 NEEDED_WINDOW_WINDOW_ID_DEC=$((${NEEDED_WINDOW_WINDOW_ID_HEX}))
 if [ -z "${NEEDED_WINDOW_WINDOW_ID_HEX}" ]; then
     ${LAUNCH_PROGRAM}
+    sleep 2s
+    wmctrl -xa terminator.Terminator -b add,maximized_horz,maximized_vert
 else
     echo "Found window ID:${NEEDED_WINDOW_WINDOW_ID_DEC}(0x${NEEDED_WINDOW_WINDOW_ID_HEX})"
     ACIVE_WINDOW_DEC=`xdotool getactivewindow`

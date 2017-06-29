@@ -1,28 +1,23 @@
 #!/bin/bash
 #
+
 ############################################
 # Set both shift keys to trigger caps lock #
 ############################################
-setxkbmap -option caps:none
 setxkbmap -option "shift:both_capslock"
-setxkbmap -option "terminate:ctrl_alt_bksp"                       
 
 killall xcape
 
 ###################
 ## Super Keys:    #
 ###################
-
 #xcape -e 'Super_L=Control_L|Alt_L|d'
 #xcape -e 'Super_R=Control_L|Alt_L|m'
-
-#Remap MenuKey to Super_R
 xmodmap -e "keycode 135 = Super_R"
 xmodmap -e "keycode 134 = Super_R"
 
-# Desktop right
+
 xcape -e 'Super_R=Control_L|Alt_L|Right'
-#
 #xcape -e '#135=Control_L|Alt_L|Right'
 
 
@@ -31,37 +26,31 @@ xcape -e 'Super_R=Control_L|Alt_L|Right'
 ###################
 #xcape -e 'Control_L=Control_L|Alt_L|Right'
 #xcape -e 'Control_L=F12'
-
-#Control_L - Launch Terminal script:
-xcape -e 'Control_L=Control_L|Alt_L|t'
-
-#Control_R - Expo Mode:
+xcape -e 'Control_L=Super_L|t'
 xcape -e 'Control_R=Control_L|F10' 
 
 ###################
 # Alt Keys:       #
 ###################
-#Alt_L- Vivaldi
+#Vivaldi
 xcape -e 'Alt_L=Super_L|w'
-
-#Alt_L - Firefox
+#Firefox
 #xcape -e 'Alt_L=Super_L|f'
-
 #Reconfigure Alt_gr
 xmodmap -e "keycode 108 = Alt_R" && xset -r 108
 xcape -e 'Alt_R=Super_L|a'
+#xcape -e 'Alt_R=EuroSign'
+
 
 ###################
 # Shift Keys:     #
 ###################
-#Shift_L - Show Desktop
 xcape -e 'Shift_L=Control_L|Alt_L|d'
-#Shift_R - Mute toggle
 xcape -t 200 -e 'Shift_R=Control_L|Shift_L|m'
 
 #############
 # Caps Lock #
 #############
-#Disable caps lock key, see above..........
+#Disable caps lock key
 xmodmap -e 'clear Lock'
 xcape -t 200 -e '#66=Super_L|d'

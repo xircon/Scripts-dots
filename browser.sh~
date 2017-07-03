@@ -13,9 +13,9 @@
 # Assigned to meta-f in KDE plasma 5
 ######################################################################################################
 #crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot
-NEEDED_WINDOW_CLASS="crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot"
-#LAUNCH_PROGRAM="/usr/bin/firefox -height 900 -width 1600"
-LAUNCH_PROGRAM="kstart --desktop 3 /opt/vivaldi-snapshot/vivaldi-snapshot"
+NEEDED_WINDOW_CLASS="Navigator.Firefox" #"crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot"
+LAUNCH_PROGRAM="/usr/bin/firefox -height 900 -width 1600"
+#LAUNCH_PROGRAM="kstart --desktop 3 /opt/vivaldi-snapshot/vivaldi-snapshot"
 ######################################################################################################
 NEEDED_WINDOW_WINDOW_ID_HEX=`wmctrl -x -l | grep ${NEEDED_WINDOW_CLASS} | awk '{print $1}' | head -n 1`
 NEEDED_WINDOW_WINDOW_ID_DEC=$((${NEEDED_WINDOW_WINDOW_ID_HEX}))
@@ -30,5 +30,7 @@ else
         xdotool windowminimize ${NEEDED_WINDOW_WINDOW_ID_DEC}
     else
         xdotool windowactivate ${NEEDED_WINDOW_WINDOW_ID_DEC}
+        #wmctrl -xa crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot -b add,maximized_horz,maximized_vert
+
     fi
 fi

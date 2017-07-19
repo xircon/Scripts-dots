@@ -1,0 +1,100 @@
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias blame="systemd-analyze blame"
+alias joerc="cd ~ && joe .joerc && cp -f .joerc ~/Dropbox/config_backup && sudo cp -f .joerc /root/.joerc"
+alias upf="pacaur -S featherpad-git"
+alias updb="time sudo updatedb"
+alias updatedb="time sudo updatedb"
+alias locate="locate -ie"
+alias yup="date && time yaourt -Syyua --noconfirm"
+alias pmi="sudo pacman -S "
+alias yup1="sudo pacman -Sy archlinux-keyring manjaro-keyring --noconfirm && date && yaourt -Syyua --noconfirm"
+alias yy="yaourt"
+alias yrt="yaourt"
+alias zshc="cd ~ && joe .zshrc && unalias -m '*' && . ~/.zshrc && cp -f .zshrc ~/Dropbox/config_backup"
+alias aliases="cd ~ && joe .aliasesrc && unalias -m '*' && . ~/.aliasesrc && cp -f .aliasesrc ~/Dropbox/config_backup"
+alias vv="viewnior"
+alias xv="xviewer"
+alias netup="sudo systemctl restart NetworkManager && killall nm-applet && sleep 5 && nm-applet&"
+alias killl="killall"
+alias hs="history | grep "
+alias lal="cd ~ && cat .zshrc | grep alias"
+alias py2="python2"
+alias py="python"
+alias pmm="sudo pacman-mirrors -f3 -g -b unstable -c Germany"
+alias spac="sudo pacman -S "
+
+#Directory & File
+alias app="cd ~/scripts/appjar"
+alias giton="git config --global oh-my-zsh.hide-status 0"
+alias gitoff="git config --global oh-my-zsh.hide-status 1"
+alias ldir="ls -1d */"
+alias ls="ls --color=always"
+alias iotop="sudo iotop"
+alias md="mkdir"
+alias paccfg="sudo joe /etc/pacman.conf"
+alias cleanc="sudo  paccache -rk 3 && paccache -ruk0"
+alias rmcoredmp="sudo rm -r /var/lib/systemd/coredump/*"
+alias roku="roku 192.168.0.7"
+alias nsp="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-ac -s 0"
+alias sp="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-ac -s 1"
+#Directory Shortcuts:
+alias home="~"
+alias dl="cd ~/Downloads"
+alias drpb="cd ~/Dropbox"
+alias media="cd /home/media/"
+alias sc="cd ~/scripts"
+#Memory:
+alias psmem="sudo ps_mem"
+alias psg="ps aux  | grep -i "
+alias search=searchfunction
+alias weather="curl -s wttr.in/sheffield"
+alias wwws+="twistd3 web --path ."
+alias wwws-="kill \`cat twistd.pid\`"
+alias lc='colorls'
+#i3
+alias i3c="featherpad ~/.i3/config &"
+alias e3="~/.i3/e3.sh"
+#alias e3="cd ~/.i3 && joe ~/.i3/config.conf && i3bang config.conf && cp config.conf "backup/config.backup.$(date +%F_%R_%S)"&&i3-msg reload && gitup && cd ~/.i3"
+alias caps="setxkbmap -option"
+alias nocaps="setxkbmap -option caps:none"
+alias gitup="cd ~/scripts && git push --all -u origin && git add * && git commit -a -m 'This is a commit' && git push --all -u origin"
+
+#cool :D
+alias map="telnet mapscii\.me"
+
+#openbox
+alias ob="cd ~/.config/openbox && joe autostart"
+
+#kernel
+alias modload="sudo /usr/lib/systemd/systemd-modules-load"
+alias status="sudo systemctl status "
+#Screen
+alias scr="xrandr --size 1600x900"
+#Editor
+alias j="joe"
+alias sj="sudo joe"
+alias fp="featherpad "
+alias sfp="sudo featherpad "
+#Sky Remote:
+#play
+alias pp="sky-remote-cli 192.168.0.3 play"
+#pause
+alias p="sky-remote-cli 192.168.0.3 pause"
+#alias pse="sky-remote-cli 192.168.0.3 pause"
+#TV Guide
+alias tvguide="sky-remote-cli 192.168.0.3 tvguide"
+#Fast forward
+alias f1="sky-remote-cli 192.168.0.3 fastforward"
+alias f="sky-remote-cli 192.168.0.3 fastforward fastforward fastforward fastforward" 
+#Rewind
+alias r1="sky-remote-cli 192.168.0.3 rewind"
+alias r4="sky-remote-cli 192.168.0.3 rewind rewind rewind rewind" 
+#Channel
+alias s="sky-remote-cli 192.168.0.3 "
+#List installed
+yyl () { yaourt $* | grep installed }

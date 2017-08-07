@@ -21,6 +21,8 @@ NEEDED_WINDOW_WINDOW_ID_HEX=`wmctrl -x -l | grep ${NEEDED_WINDOW_CLASS} | awk '{
 NEEDED_WINDOW_WINDOW_ID_DEC=$((${NEEDED_WINDOW_WINDOW_ID_HEX}))
 if [ -z "${NEEDED_WINDOW_WINDOW_ID_HEX}" ]; then
     ${LAUNCH_PROGRAM}
+    sleep 2s
+    wmctrl -x -a "pcmanfm.Pcmanfm"
 else
     echo "Found window ID:${NEEDED_WINDOW_WINDOW_ID_DEC}(0x${NEEDED_WINDOW_WINDOW_ID_HEX})"
     ACIVE_WINDOW_DEC=`xdotool getactivewindow`

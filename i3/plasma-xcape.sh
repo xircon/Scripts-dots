@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+notify-send Plasma-xcape "xcape starting" 
 ############################################
 # Set both shift keys to trigger caps lock #
 ############################################
@@ -66,3 +67,4 @@ xcape -t 200 -e 'Shift_R=Control_L|Shift_L|m'
 #Disable caps lock key, see above..........
 xmodmap -e 'clear Lock'
 xcape -t 200 -e '#66=Super_L|d'
+notify-send Plasma-xcape "xcape loaded" 

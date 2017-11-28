@@ -11,13 +11,8 @@
 # in Russian :) but works when adjusting the wrapping.
 # Assigned to meta-f in KDE plasma 5
 ######################################################################################################
-#crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot
-#NEEDED_WINDOW_CLASS="terminator.Terminator"
 NEEDED_WINDOW_CLASS="sakura.Sakura"
-#LAUNCH_PROGRAM="/usr/bin/firefox -height 900 -width 1600"
-#LAUNCH_PROGRAM="kstart --desktop 4 /usr/bin/terminator -f"
-LAUNCH_PROGRAM="/usr/bin/sakura -m"
-
+LAUNCH_PROGRAM="/usr/bin/sakura"
 ######################################################################################################
 NEEDED_WINDOW_WINDOW_ID_HEX=`wmctrl -x -l | grep ${NEEDED_WINDOW_CLASS} | awk '{print $1}' | head -n 1`
 NEEDED_WINDOW_WINDOW_ID_DEC=$((${NEEDED_WINDOW_WINDOW_ID_HEX}))

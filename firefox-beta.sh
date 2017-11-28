@@ -12,7 +12,8 @@
 # Assigned to meta-f in KDE plasma 5
 ######################################################################################################
 #crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot
-NEEDED_WINDOW_CLASS="Navigator.Firefox"
+#Navigator.Nightly
+NEEDED_WINDOW_CLASS="Navigator.Nightly"
 LAUNCH_PROGRAM="firefox-nightly" # -height 900 -width 1600"
 #LAUNCH_PROGRAM="kstart --desktop 3 /opt/vivaldi-snapshot/vivaldi-snapshot"
 ######################################################################################################

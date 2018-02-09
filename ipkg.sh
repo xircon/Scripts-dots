@@ -19,4 +19,5 @@ pkg=$( sort -k1,1 -u $outfile | fzf-tmux -m +x -e +s -i -1 --query="$1" --cycle 
             ' --preview-window=right:50%:wrap --header="$head1" --prompt='Enter string to filter list > ' | awk '{print $1}' )
 
 echo "Input2= "$input2
+yaourt -Rsn $pkg
 echo $pkg

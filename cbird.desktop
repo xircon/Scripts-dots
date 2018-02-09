@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_GB]=/path/to/icon/for/en_GB.png
+Name[en_GB]=Corebird larger text
+Exec=/home/steve/scripts/cbird.sh
+Comment[en_GB]=Some comment for en_GB
+Name=Launcher Name
+Comment=Some comment.
+Icon=/usr/share/icons/hicolor/48x48/apps/corebird.png

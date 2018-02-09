@@ -13,6 +13,7 @@
 ######################################################################################################
 #crx_mpognobbkildjkofajifpdfhcoklimli.Vivaldi-snapshot
 #Navigator.Nightly
+#NEEDED_WINDOW_CLASS="Toplevel.Nightly"
 NEEDED_WINDOW_CLASS="Navigator.Nightly"
 LAUNCH_PROGRAM="firefox-nightly" # -height 900 -width 1600"
 #LAUNCH_PROGRAM="kstart --desktop 3 /opt/vivaldi-snapshot/vivaldi-snapshot"

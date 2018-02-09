@@ -57,9 +57,9 @@ xcape -e 'Alt_R=Super_L|a'
 ###################
 #Shift_L - Show Desktop
 #xcape -e 'Shift_L=Control_L|Alt_L|d'
-xcape -e 'Shift_L=Escape'
+xcape -e 'Shift_L=BackSpace|Escape'
 #Shift_R - Mute toggle
-xcape -t 200 -e 'Shift_R=Control_L|Shift_L|m'
+xcape -t 200 -e 'Shift_R=Control_L|Alt_L|m'
 
 #############
 # Caps Lock #
